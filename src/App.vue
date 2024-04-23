@@ -1,6 +1,6 @@
 <script setup>
 import Autocomplete from './components/Autocomplete.vue';
-import drugs from './data/drugs'
+import drugs from './data/drugs.json'
 import { ref } from 'vue';
 
 const drug = ref('')
