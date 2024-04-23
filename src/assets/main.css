@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-yellow {
-    background-color: #fbe404;
+.input-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
-.border-solid {
-    border: 1px solid #000;
+.input-wrapper input {
+  padding-right: 40px;
+}
+
+.input-wrapper button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  color: #f00;
 }
