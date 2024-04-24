@@ -46,7 +46,7 @@ const clearInput = () => {
 }
 </script>
 <template>
-    <div class="w-full relative input-wrapper">
+    <div class="w-full relative input-wrapper drop-shadow-lg">
         <input type="text" :value="modelValue.name" @input="handleInput"
             class="px-5 py-3 w-full border border-gray-300 rounded-md">
         <button v-show="search.name" @click="clearInput" class="w-9 h-9 mt-2 clear-btn">

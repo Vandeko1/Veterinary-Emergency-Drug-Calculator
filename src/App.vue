@@ -7,9 +7,8 @@ const drug = ref('')
 </script>
 <template>
   <main>
-    <div class="w-screen h-screen bg-gray-200 flex justify-center items-center flex-col">
-      <div class="w-1/3">
-        <!-- <h1 class="text-center mb-3 font-bold">{{ drug.name }}</h1> -->
+    <div class="w-screen h-screen bg-gray-200 flex justify-start items-center flex-col">
+      <div class="w-1/3 min-w-64 mt-8">
         <Autocomplete :source="drugs" v-model="drug" />
       </div>
       <div class="flex flex-col">
