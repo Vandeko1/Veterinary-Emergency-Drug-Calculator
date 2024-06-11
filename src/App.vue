@@ -7,36 +7,52 @@ const drug = ref('')
 </script>
 <template>
   <main>
-    <div class="w-screen h-screen bg-gray-200 flex justify-start items-center flex-col">
-      <div class="w-1/3 min-w-64 mt-8">
-        <Autocomplete :source="drugs" v-model="drug" />
-      </div>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
-                  <tr>
-                    <th scope="col" class="px-6 py-4">Тип</th>
-                    <th scope="col" class="px-6 py-4">Підтип</th>
-                    <th scope="col" class="px-6 py-4">Для собак</th>
-                    <th scope="col" class="px-6 py-4">Для котів</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-b border-neutral-200 dark:border-white/10">
-                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{ drug.type }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">{{ drug.subtype }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">{{ drug.dogs }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">{{ drug.cats }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="wrapper p-2.5">
+      <Autocomplete :source="drugs" v-model="drug" />
+      <table v-for="item in drug.data" :key=item.id
+        class="mt-2.5 border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm">
+        <thead class="bg-slate-50 dark:bg-slate-700">
+          <tr>
+            <th class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">Властивість
+            </th>
+            <th class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">Значення
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">Група</td>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{{
+              item.type }}</td>
+          </tr>
+          <tr>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">Місце
+              введення</td>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{{
+              item.place }}</td>
+          </tr>
+          <tr>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">Для собак
+            </td>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{{
+              item.dogs }}</td>
+          </tr>
+          <tr>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">Для котів
+            </td>
+            <td class="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{{
+              item.cats }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </main>
 </template>
+<style>
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+</style>

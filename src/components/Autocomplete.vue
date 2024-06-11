@@ -1,5 +1,12 @@
 <script setup>
-import { computed, ref, reactive } from 'vue';
+import { computed, ref, onMounted, nextTick, reactive } from 'vue';
+
+const autocomplete = ref(null);
+onMounted(() => {
+    nextTick(() => {
+        autocomplete.value.focus();
+    });
+});
 
 const props = defineProps({
     source: {
@@ -38,6 +45,7 @@ const setSelected = item => {
 const handleInput = event => {
     isOpen.value = true
     search.name = event.target.value
+    // search {} instanceof Object
     emit('update:modelValue', search)
 }
 
@@ -47,8 +55,8 @@ const clearInput = () => {
 </script>
 <template>
     <div class="w-full relative input-wrapper drop-shadow-lg">
-        <input type="text" :value="modelValue.name" @input="handleInput"
-            class="px-5 py-3 w-full border border-gray-300 rounded-md">
+        <input type="text" :value="modelValue.name || ''" placeholder="Введіть назву препарату" ref="autocomplete"
+            @input="handleInput" class="px-5 py-3 w-full border border-gray-300 rounded-md">
         <button v-show="search.name" @click="clearInput" class="w-9 h-9 mt-2 clear-btn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor">
@@ -62,5 +70,12 @@ const clearInput = () => {
                 class="px-4 py-3 border-b border-gray-200 text-stone-600 cursor-pointer hover:bg-gray-100 transition-colors">
                 {{ result.name }}</li>
         </ul>
+        <h3 class="anna" v-show="!modelValue.name">Анна Ангеліна Михайлівна💗</h3>
     </div>
 </template>
+<style>
+.anna {
+    text-align: center;
+    margin: 50px auto;
+}
+</style>
